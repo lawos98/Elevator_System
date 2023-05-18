@@ -12,8 +12,8 @@ case class Floor(number: Int) {
     peopleOnFloorList :+= person
   }
 
-  def getPeopleNotTaken(direction: State): List[Person] = {
-    waitingList.filter(person => direction match {
+  def getPeopleNotTaken(state: State): List[Person] = {
+    waitingList.filter(person => state match {
       case Up => person.destinationFloor > number
       case Down => person.destinationFloor < number
     })
@@ -48,13 +48,13 @@ case class Floor(number: Int) {
         while (changedPerson.destinationFloor == number) changedPerson=changedPerson.changeDestinationFloor()
         waitingList :+= changedPerson
         ColorText.printBlue(s"Person ${person} changed destination floor to ${changedPerson.destinationFloor}")
-        Building.requestElevator(number,defineDirection(number,changedPerson.destinationFloor))
+        Building.requestElevator(number,defineState(number,changedPerson.destinationFloor))
       }
     })
-    waitingList.foreach(_.addTimeToEnterElevator())
+    waitingList.foreach(_.addTimeForElevator())
   }
 
-  private def defineDirection(startFloor: Int, destinationFloor: Int): State = {
+  private def defineState(startFloor: Int, destinationFloor: Int): State = {
     if (startFloor < destinationFloor) Up
     else if (startFloor > destinationFloor) Down
     else Idle

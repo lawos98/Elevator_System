@@ -4,24 +4,24 @@ import scala.util.Random
 import scala.util.Random.between
 
 case class Person(id: Int, weight: Int, destinationFloor: Int) {
-  private var timeToEnterElevator = 0
-  private var timeToExitElevator = 0
+  private var timeForElevator = 0
+  private var timeInElevator = 0
 
-  def getTimeToEnterElevator(): Int = timeToEnterElevator
+  def getTimeForElevator: Int = timeForElevator
 
-  def getTimeToExitElevator(): Int = timeToExitElevator
+  def getTimeInElevator: Int = timeInElevator
 
-  def addTimeToEnterElevator(): Unit = {
-    timeToEnterElevator += 1
+  def addTimeForElevator(): Unit = {
+    timeForElevator += 1
   }
 
-  def addTimeToExitElevator(): Unit = {
-    timeToExitElevator += 1
+  def addTimeInElevator(): Unit = {
+    timeInElevator += 1
   }
 
-  def resetTimer(): Unit = {
-    timeToEnterElevator = 0
-    timeToExitElevator = 0
+  private def resetTimer(): Unit = {
+    timeForElevator = 0
+    timeInElevator = 0
   }
 
   def changeDestinationFloor(): Person = {

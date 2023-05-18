@@ -22,12 +22,12 @@ object Statistics {
     waitingTimesInElevator = waitingTimesInElevator :+ time
   }
 
-  private def getWaitingTimeForElevator():Int = {
+  private def getWaitingTimeForElevator:Int = {
     if(waitingTimesForElevator.isEmpty) 0
     else waitingTimesForElevator.sum/waitingTimesForElevator.length
   }
 
-  private def getWaitingTimeInElevator():Int = {
+  private def getWaitingTimeInElevator:Int = {
     if(waitingTimesInElevator.isEmpty) 0
     else waitingTimesInElevator.sum/waitingTimesInElevator.length
   }
@@ -36,8 +36,8 @@ object Statistics {
     ColorText.printYellow("===============================================")
     ColorText.printYellow("Moves down: " + weightMoveDown.length)
     ColorText.printYellow("Moves up: " + weightMoveUp.length)
-    ColorText.printYellow("Average waiting time for elevator: " + getWaitingTimeForElevator())
-    ColorText.printYellow("Average waiting time in elevator: " + getWaitingTimeInElevator())
+    ColorText.printYellow("Average waiting time for elevator: " + getWaitingTimeForElevator)
+    ColorText.printYellow("Average waiting time in elevator: " + getWaitingTimeInElevator)
     ColorText.printYellow("Total Energy Used:" + ElevatorConfig.energyUpFactor*weightMoveUp.sum + ElevatorConfig.energyDownFactor*weightMoveDown.sum)
     ColorText.printYellow("===============================================")
   }
